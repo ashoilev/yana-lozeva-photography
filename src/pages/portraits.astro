@@ -4,7 +4,7 @@ import CTA from "../components/CTA.astro";
 import EditorialGallery from "../components/EditorialGallery.astro";
 import PageHero from "../components/PageHero.astro";
 import ServiceBlock from "../components/ServiceBlock.astro";
-import { images } from "../data/site";
+import { images, withBase } from "../data/site";
 ---
 
 <MainLayout
@@ -63,6 +63,6 @@ import { images } from "../data/site";
     title="Want your own?"
     body="You do not need to know how to pose. Yana will guide the session without making it feel staged."
     primaryLabel="Book a portrait"
-    primaryHref="/#book"
+    primaryHref={withBase("/#book")}
   />
 </MainLayout>

@@ -1,3 +1,12 @@
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+export const withBase = (path = "/") => {
+  if (path === "/") return `${baseUrl}/`;
+  return `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`;
+};
+
+const imagePath = (file: string) => withBase(`/images/${file}`);
+
 export const site = {
   name: "Yana Lozeva",
   businessName: "traits",
@@ -10,7 +19,7 @@ export const site = {
 };
 
 export const logo = {
-  src: "/images/traits.jpg",
+  src: imagePath("traits.jpg"),
   alt: "traits"
 };
 
@@ -32,7 +41,7 @@ export type PortfolioImage = {
 export const portfolioImages: PortfolioImage[] = [
   {
     id: "yana-portrait-1369",
-    src: "/images/_DSC1369s.jpg",
+    src: imagePath("_DSC1369s.jpg"),
     alt: "Black-and-white vertical portrait with a quiet direct expression.",
     width: 1333,
     height: 2000,
@@ -43,7 +52,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-2816",
-    src: "/images/_DSC2816s.jpg",
+    src: imagePath("_DSC2816s.jpg"),
     alt: "Black-and-white portrait in soft daylight.",
     width: 2000,
     height: 1335,
@@ -54,7 +63,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-0082",
-    src: "/images/_DSC0082s.jpg",
+    src: imagePath("_DSC0082s.jpg"),
     alt: "Editorial black-and-white portrait with relaxed posture.",
     width: 2000,
     height: 1333,
@@ -65,7 +74,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-3517",
-    src: "/images/_DSC3517sm.jpg",
+    src: imagePath("_DSC3517sm.jpg"),
     alt: "Black-and-white portrait photographed with natural light.",
     width: 2000,
     height: 1335,
@@ -76,7 +85,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-5042",
-    src: "/images/_DSC5042sm.jpg",
+    src: imagePath("_DSC5042sm.jpg"),
     alt: "Intimate black-and-white portrait of people together.",
     width: 2000,
     height: 1335,
@@ -87,7 +96,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-1447",
-    src: "/images/_DSC1447s.jpg",
+    src: imagePath("_DSC1447s.jpg"),
     alt: "Black-and-white portrait with an editorial workplace feeling.",
     width: 2000,
     height: 1333,
@@ -98,7 +107,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-6539",
-    src: "/images/_DSC6539sm.jpg",
+    src: imagePath("_DSC6539sm.jpg"),
     alt: "Human editorial portrait for company use.",
     width: 2000,
     height: 1335,
@@ -109,7 +118,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-0779",
-    src: "/images/_DSC0779s.jpg",
+    src: imagePath("_DSC0779s.jpg"),
     alt: "Vertical black-and-white portrait with calm presence.",
     width: 1335,
     height: 2000,
@@ -120,7 +129,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-04970",
-    src: "/images/_DSC04970s.jpg",
+    src: imagePath("_DSC04970s.jpg"),
     alt: "Black-and-white portrait for a professional context.",
     width: 2000,
     height: 1333,
@@ -131,7 +140,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-7157",
-    src: "/images/_DSC7157s.jpg",
+    src: imagePath("_DSC7157s.jpg"),
     alt: "Quiet black-and-white portrait in an intimate setting.",
     width: 2000,
     height: 1335,
@@ -142,7 +151,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-4686",
-    src: "/images/_DSC4686s.jpg",
+    src: imagePath("_DSC4686s.jpg"),
     alt: "Editorial portrait with restrained composition.",
     width: 2000,
     height: 1429,
@@ -153,7 +162,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-0431",
-    src: "/images/_DSC0431s.jpg",
+    src: imagePath("_DSC0431s.jpg"),
     alt: "Black-and-white personal portrait with natural expression.",
     width: 2000,
     height: 1334,
@@ -164,7 +173,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-0831",
-    src: "/images/_DSC0831s.jpg",
+    src: imagePath("_DSC0831s.jpg"),
     alt: "Editorial portrait suitable for company profiles.",
     width: 2000,
     height: 1335,
@@ -175,7 +184,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-1021",
-    src: "/images/_DSC1021s.jpg",
+    src: imagePath("_DSC1021s.jpg"),
     alt: "Relaxed black-and-white portrait with soft contrast.",
     width: 2000,
     height: 1335,
@@ -186,7 +195,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-5023",
-    src: "/images/_DSC5023s.jpg",
+    src: imagePath("_DSC5023s.jpg"),
     alt: "Human company portrait in black and white.",
     width: 2000,
     height: 1335,
@@ -197,7 +206,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-5976",
-    src: "/images/_DSC5976s.jpg",
+    src: imagePath("_DSC5976s.jpg"),
     alt: "Minimal editorial portrait for professional use.",
     width: 2000,
     height: 1335,
@@ -208,7 +217,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-work-5530",
-    src: "/images/_DSC5530sm.jpg",
+    src: imagePath("_DSC5530sm.jpg"),
     alt: "Black-and-white portrait with a calm work-context tone.",
     width: 2000,
     height: 1335,
@@ -219,7 +228,7 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: "yana-portrait-7594",
-    src: "/images/_DSC7594.jpg",
+    src: imagePath("_DSC7594.jpg"),
     alt: "Vertical editorial portrait in black and white.",
     width: 1335,
     height: 2000,
@@ -280,7 +289,7 @@ const archiveSelection: ArchiveTuple[] = [
 
 const archiveImages: PortfolioImage[] = archiveSelection.map(([file, width, height], index) => ({
   id: `yana-archive-${index + 1}`,
-  src: `/images/${file}`,
+  src: imagePath(file),
   alt: `Portrait from Yana Lozeva's photography archive, image ${index + 1}.`,
   width,
   height,

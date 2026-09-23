@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import CTA from "../components/CTA.astro";
 import PageHero from "../components/PageHero.astro";
-import { images, site } from "../data/site";
+import { images, site, withBase } from "../data/site";
 ---
 
 <MainLayout
@@ -34,7 +34,7 @@ import { images, site } from "../data/site";
     title="Start with a simple note"
     body="Tell Yana what kind of portrait you need, where you are based and when you have in mind."
     primaryLabel="Book a portrait"
-    primaryHref="/#book"
+    primaryHref={withBase("/#book")}
     secondaryLabel="Email Yana"
     secondaryHref={`mailto:${site.email}`}
   />
