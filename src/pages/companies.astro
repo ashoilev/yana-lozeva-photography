@@ -1,0 +1,95 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import CTA from "../components/CTA.astro";
+import EditorialGallery from "../components/EditorialGallery.astro";
+import PageHero from "../components/PageHero.astro";
+import ServiceBlock from "../components/ServiceBlock.astro";
+import { images, site } from "../data/site";
+---
+
+<MainLayout
+  title="For Companies | Yana Lozeva"
+  description="Editorial employee portraits, corporate headshots and team portraits in Sofia and throughout Bulgaria."
+>
+  <PageHero
+    eyebrow="For Companies"
+    title="Real People, Clear System"
+    intro="Your team does not need to look corporate to look professional."
+  />
+
+  <EditorialGallery
+    items={[
+      { ...images.companyPortrait, variant: "tall", caption: "Employee portraits" },
+      { ...images.companyTeam, variant: "wide", caption: "Team portraits" },
+      { ...images.hero, variant: "full" }
+    ]}
+  />
+
+  <section class="content-band">
+    <div class="container service-grid">
+      <div>
+        <p class="eyebrow">Offer</p>
+      </div>
+      <ServiceBlock
+        services={[
+          {
+            eyebrow: "01",
+            title: "Employee Portraits",
+            body: "Consistent portrait sessions for teams of different sizes, shaped around the company and the people inside it."
+          },
+          {
+            eyebrow: "02",
+            title: "Team Portraits",
+            body: "Groups photographed naturally and with the same visual language as the individual portraits."
+          },
+          {
+            eyebrow: "03",
+            title: "Headshots",
+            body: "Clean professional portraits for profiles, press, websites and internal communications."
+          },
+          {
+            eyebrow: "04",
+            title: "Workplace Photography",
+            body: "A reserved space for a future workplace or office photography offer, kept within the same editorial identity."
+          }
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="content-band">
+    <div class="container">
+      <div class="text-grid">
+        <p class="eyebrow">Process</p>
+      <div>
+          <p class="page-intro">A consistent visual system across the team, with enough room for each person to remain individual.</p>
+          <div class="process">
+            <article class="process-step">
+              <p class="label">01 — Brief</p>
+              <h3>Align</h3>
+              <p>We define the people, visual direction, location and usage.</p>
+            </article>
+            <article class="process-step">
+              <p class="label">02 — Shoot</p>
+              <h3>Photograph</h3>
+              <p>Yana creates a comfortable setup and photographs the team efficiently.</p>
+            </article>
+            <article class="process-step">
+              <p class="label">03 — Delivery</p>
+              <h3>Select</h3>
+              <p>A consistent, carefully edited set of finished photographs.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    eyebrow="Company Shoots"
+    title="Plan a company shoot"
+    body="Send a short note with the team size, intended use and rough timing. Corporate enquiries go through email rather than Calendly."
+    primaryLabel="Email Yana"
+    primaryHref={`mailto:${site.email}?subject=Corporate photography inquiry`}
+  />
+</MainLayout>

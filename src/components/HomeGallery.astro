@@ -1,0 +1,63 @@
+---
+import type { PortfolioImage } from "../data/site";
+
+type Props = {
+  images: PortfolioImage[];
+};
+
+const { images } = Astro.props;
+const initialImages = images.slice(0, 8);
+const serializedImages = JSON.stringify(images);
+---
+
+<section class="home-gallery" aria-label="Selected portraits">
+  <div class="home-gallery-wall" data-home-gallery data-images={serializedImages}>
+    {
+      initialImages.map((image, index) => (
+        <figure class:list={["wall-frame", image.orientation]}>
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading="eager"
+            decoding={index < 3 ? "sync" : "async"}
+            fetchpriority={index < 3 ? "high" : "auto"}
+            sizes="(max-width: 680px) 50vw, (max-width: 980px) 33vw, 25vw"
+            data-slot-index={index}
+          />
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const wall = document.querySelector("[data-home-gallery]");
+    if (!wall || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const images = JSON.parse(wall.dataset.images || "[]");
+    const slots = Array.from(wall.querySelectorAll("img[data-slot-index]"));
+    if (images.length <= slots.length) return;
+
+    let offset = 0;
+
+    window.setInterval(() => {
+      offset = (offset + 3) % images.length;
+      slots.forEach((slot, index) => {
+        const next = images[(offset + index) % images.length];
+        if (!next || slot.getAttribute("src") === next.src) return;
+
+        slot.classList.add("is-changing");
+        window.setTimeout(() => {
+          slot.setAttribute("src", next.src);
+          slot.setAttribute("alt", next.alt);
+          slot.setAttribute("width", next.width);
+          slot.setAttribute("height", next.height);
+          slot.classList.remove("is-changing");
+        }, 260);
+      });
+    }, 10000);
+  })();
+</script>

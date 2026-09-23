@@ -1,0 +1,33 @@
+---
+type ImageItem = {
+  src: string;
+  alt: string;
+  caption?: string;
+  variant: "tall" | "wide" | "full" | "offset";
+  loading?: "eager" | "lazy";
+};
+
+type Props = {
+  items: ImageItem[];
+};
+
+const { items } = Astro.props;
+---
+
+<section class="container editorial-gallery" aria-label="Selected photography">
+  {
+    items.map((item) => (
+      <figure class={`gallery-item ${item.variant}`}>
+        <img
+          src={item.src}
+          alt={item.alt}
+          width={item.variant === "wide" || item.variant === "full" ? "1536" : "1024"}
+          height={item.variant === "wide" || item.variant === "full" ? "1024" : "1536"}
+          loading={item.loading ?? "lazy"}
+          decoding="async"
+        />
+        {item.caption && <figcaption class="caption">{item.caption}</figcaption>}
+      </figure>
+    ))
+  }
+</section>

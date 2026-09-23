@@ -1,0 +1,20 @@
+---
+import { logo, site } from "../data/site";
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-mark" href="/" aria-label="Yana Lozeva home">
+      <img src={logo.src} alt={logo.alt} width="240" height="240" />
+      <span>Yana Lozeva</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="/work">Work</a></li>
+        <li><a class="nav-link" href="/about">About</a></li>
+        <li><a class="nav-link" href={site.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
+        <li><a class="book-link" href="/#book">Book a portrait</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

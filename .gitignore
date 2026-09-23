@@ -1,0 +1,19 @@
+# Dependencies and Astro output
+node_modules/
+dist/
+.astro/
+
+# Local deployment output
+.netlify/
+.vercel/
+
+# Environment files (keep the documented template)
+.env
+.env.*
+!.env.example
+
+# Editor, OS, and local files
+.DS_Store
+*.log
+.idea/
+.vscode/

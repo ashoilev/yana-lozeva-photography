@@ -1,0 +1,25 @@
+---
+type Service = {
+  eyebrow: string;
+  title: string;
+  body: string;
+};
+
+type Props = {
+  services: Service[];
+};
+
+const { services } = Astro.props;
+---
+
+<div class="services">
+  {
+    services.map((service) => (
+      <article class="service">
+        <p class="label">{service.eyebrow}</p>
+        <h3>{service.title}</h3>
+        <p>{service.body}</p>
+      </article>
+    ))
+  }
+</div>

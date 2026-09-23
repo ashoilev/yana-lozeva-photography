@@ -1,0 +1,27 @@
+---
+import { logo, site } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="footer-mark" href="/" aria-label="Yana Lozeva home">
+      <img src={logo.src} alt={logo.alt} width="240" height="240" />
+      <span>Yana Lozeva</span>
+    </a>
+    <p class="footer-meta">
+      Photographer<br />
+      {site.location}<br />
+      © {year} Yana Lozeva
+    </p>
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        <li><a class="plain-link" href="/work">Work</a></li>
+        <li><a class="plain-link" href="/about">About</a></li>
+        <li><a class="plain-link" href={site.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
+        <li><a class="plain-link" href={`mailto:${site.email}`}>Email</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
