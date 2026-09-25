@@ -1,0 +1,67 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import HomeGallery from "../../components/HomeGallery.astro";
+import LazyCalendly from "../../components/LazyCalendly.astro";
+import { copy, languages, localizedPath, type Language } from "../../data/i18n";
+import { corporateImages, homepageImages, personalImages, site } from "../../data/site";
+
+export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
+const { lang } = Astro.props as { lang: Language };
+const text = copy[lang];
+const personalPreview = personalImages.slice(0, 4);
+const corporatePreview = corporateImages.slice(0, 4);
+const corporateMailto = `mailto:${site.email}?subject=${encodeURIComponent(text.companies.cta.subject)}`;
+---
+
+<MainLayout title={text.home.title} description={text.home.description} lang={lang} page="home">
+  <HomeGallery images={homepageImages} lang={lang} label={text.home.servicesLabel} />
+
+  <section class="intro-line intro-yana" aria-labelledby="about-yana">
+    <div class="container intro-yana-grid">
+      <div>
+        <p class="eyebrow">{text.home.eyebrow}</p>
+        <h1 id="about-yana">{text.home.h1}</h1>
+      </div>
+      <div class="text-stack">
+        {text.home.intro.map((paragraph) => <p>{paragraph}</p>)}
+        <a class="text-link" href={localizedPath(lang, "about")}>{text.home.more}</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="work-section" aria-label={text.home.servicesLabel}>
+    <div class="container work-paths">
+      <article class="work-path" id="personal">
+        <div class="work-path-copy">
+          <p class="label">{text.home.personal.label}</p>
+          <h2>{text.home.personal.title}</h2>
+          <p>{text.home.personal.body}</p>
+          <div class="work-actions"><a class="button" href="#book">{text.home.personal.action}</a></div>
+        </div>
+        <div class="inline-portfolio" aria-label={text.home.personal.gallery}>
+          {personalPreview.map((image) => <figure><img src={image.src} alt={lang === "bg" ? image.altBg : image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" /></figure>)}
+        </div>
+      </article>
+
+      <article class="work-path" id="companies">
+        <div class="work-path-copy">
+          <p class="label">{text.home.corporate.label}</p>
+          <h2>{text.home.corporate.title}</h2>
+          <p>{text.home.corporate.body}</p>
+          <div class="work-actions"><a class="button secondary" href={corporateMailto}>{text.home.corporate.action}</a></div>
+        </div>
+        <div class="inline-portfolio" aria-label={text.home.corporate.gallery}>
+          {corporatePreview.map((image) => <figure><img src={image.src} alt={lang === "bg" ? image.altBg : image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" /></figure>)}
+        </div>
+      </article>
+    </div>
+    <div class="container work-archive-link"><a class="button" href={localizedPath(lang, "work")}>{text.home.allWork}</a></div>
+  </section>
+
+  <section id="book" class="booking-embed" aria-labelledby="book-title">
+    <div class="container booking-embed-grid">
+      <div><p class="eyebrow">{text.home.booking.label}</p><h2 id="book-title">{text.home.booking.title}</h2></div>
+      <div><p>{text.home.booking.body}</p><LazyCalendly lang={lang} /></div>
+    </div>
+  </section>
+</MainLayout>

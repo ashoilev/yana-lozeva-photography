@@ -1,44 +1,83 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
-import { images } from "../data/site";
+import { getCopy, localizedPath, otherLanguage, type Language, type PageKey } from "../data/i18n";
+import { images, site } from "../data/site";
 import "../styles/global.css";
 
 type Props = {
   title: string;
-  description?: string;
-  canonicalPath?: string;
+  description: string;
+  lang: Language;
+  page: PageKey;
+  type?: "website" | "profile";
+  noindex?: boolean;
 };
 
-const {
-  title,
-  description = "Yana Lozeva is a Sofia-based photographer creating intimate editorial portraits of people individually, together and at work.",
-  canonicalPath = Astro.url.pathname
-} = Astro.props;
-
-const canonical = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
+const { title, description, lang, page, type = "website", noindex = false } = Astro.props;
+const alternateLang = otherLanguage(lang);
+const absolute = (path: string) => new URL(path, site.origin).toString();
+const canonical = absolute(localizedPath(lang, page));
+const englishUrl = absolute(localizedPath("en", page));
+const bulgarianUrl = absolute(localizedPath("bg", page));
+const alternatePath = localizedPath(alternateLang, page);
+const ogImage = absolute(images.hero.src);
+const text = getCopy(lang);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${site.origin}/#yana-lozeva`,
+      name: "Yana Lozeva",
+      alternateName: "Яна Лозева",
+      url: `${site.origin}/${lang}/`,
+      image: ogImage,
+      jobTitle: lang === "bg" ? "Портретен фотограф" : "Portrait photographer",
+      homeLocation: { "@type": "Place", name: lang === "bg" ? "София, България" : "Sofia, Bulgaria" },
+      areaServed: [{ "@type": "City", name: "Sofia" }, { "@type": "Country", name: "Bulgaria" }],
+      sameAs: [site.instagram],
+      knowsAbout: lang === "bg"
+        ? ["Портретна фотография", "Семейни портрети", "Корпоративни портрети", "Екипни портрети"]
+        : ["Portrait photography", "Family portraits", "Corporate portrait photography", "Team portraits"]
+    },
+    { "@type": "WebSite", "@id": `${site.origin}/#website`, url: `${site.origin}/`, name: "Yana Lozeva Photography", inLanguage: ["en", "bg"] },
+    { "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: title, description, inLanguage: lang, isPartOf: { "@id": `${site.origin}/#website` }, about: { "@id": `${site.origin}/#yana-lozeva` } }
+  ]
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
     <link rel="canonical" href={canonical} />
-    <meta name="keywords" content="Yana Lozeva, traits, photographer Sofia, portrait photographer Sofia, family photographer Sofia, corporate photographer Sofia, corporate headshots Sofia, employee portraits Sofia" />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="bg" href={bulgarianUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content={images.hero.src} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={lang === "bg" ? images.hero.altBg : images.hero.alt} />
+    <meta property="og:site_name" content="Yana Lozeva Photography" />
+    <meta property="og:locale" content={text.locale} />
+    <meta property="og:locale:alternate" content={getCopy(alternateLang).locale} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
-    <Navigation />
-    <main class="page-shell">
-      <slot />
-    </main>
-    <Footer />
+    <a class="skip-link" href="#main-content">{lang === "bg" ? "Към съдържанието" : "Skip to content"}</a>
+    <Navigation lang={lang} page={page} alternateUrl={alternatePath} />
+    <main class="page-shell" id="main-content"><slot /></main>
+    <Footer lang={lang} />
   </body>
 </html>

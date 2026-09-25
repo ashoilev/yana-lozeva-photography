@@ -1,0 +1,22 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import CTA from "../../components/CTA.astro";
+import PageHero from "../../components/PageHero.astro";
+import { copy, languages, localizedPath, type Language } from "../../data/i18n";
+import { images, site } from "../../data/site";
+
+export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
+const { lang } = Astro.props as { lang: Language };
+const text = copy[lang].about;
+---
+
+<MainLayout title={text.title} description={text.description} lang={lang} page="about" type="profile">
+  <PageHero eyebrow={text.label} title={text.h1} intro={text.intro} image={{ ...images.hero, alt: lang === "bg" ? images.hero.altBg : images.hero.alt }} portraitLayout={true} />
+  <section class="content-band">
+    <div class="container text-grid">
+      <p class="eyebrow">{text.approach}</p>
+      <div class="text-stack">{text.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div>
+    </div>
+  </section>
+  <CTA eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.primary} primaryHref={localizedPath(lang, "home", "#book")} secondaryLabel={text.cta.secondary} secondaryHref={`mailto:${site.email}`} />
+</MainLayout>

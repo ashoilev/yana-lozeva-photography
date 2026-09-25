@@ -1,0 +1,22 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { copy, languages, type Language } from "../../data/i18n";
+import { site } from "../../data/site";
+
+export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
+const { lang } = Astro.props as { lang: Language };
+const text = copy[lang].contact;
+---
+
+<MainLayout title={text.title} description={text.description} lang={lang} page="contact">
+  <PageHero eyebrow={text.label} title={text.h1} intro={text.intro} />
+  <section id="book" class="content-band"><div class="container contact-grid"><div><p class="eyebrow">{text.personal}</p></div><div class="text-stack"><p>{text.personalBody}</p><ul class="booking-list" aria-label={text.personal}><li><a href={site.calendly.url} target="_blank" rel="noreferrer"><span>{text.bookingOption}</span><span>Calendly</span></a></li></ul></div></div></section>
+  <section class="content-band"><div class="container contact-grid"><div><p class="eyebrow">{text.company}</p></div><form class="contact-form" action={`mailto:${site.email}`} method="post" enctype="text/plain">
+    <div class="field"><label for="name">{text.fields.name}</label><input id="name" name="Name" autocomplete="name" required /></div>
+    <div class="field"><label for="company">{text.fields.company}</label><input id="company" name="Company" autocomplete="organization" /></div>
+    <div class="field"><label for="email">{text.fields.email}</label><input id="email" name="Email" type="email" autocomplete="email" required /></div>
+    <div class="field"><label for="message">{text.fields.message}</label><textarea id="message" name="Message" required></textarea></div>
+    <button class="button" type="submit">{text.action}</button><p>{text.direct} <a class="plain-link" href={`mailto:${site.email}`}>{site.email}</a></p>
+  </form></div></section>
+</MainLayout>

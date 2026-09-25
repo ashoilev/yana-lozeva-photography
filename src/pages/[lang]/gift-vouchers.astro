@@ -1,0 +1,43 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { copy, languages, type Language } from "../../data/i18n";
+import { site, withBase } from "../../data/site";
+
+export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
+const { lang } = Astro.props as { lang: Language };
+const text = copy[lang].giftVouchers;
+const emailHref = `mailto:${site.email}?subject=${encodeURIComponent(text.emailSubject)}&body=${encodeURIComponent(text.emailBody)}`;
+const voucherImage = lang === "bg" ? "/images/gift-voucher-placeholder-bg.svg" : "/images/gift-voucher-placeholder.svg";
+---
+
+<MainLayout title={text.title} description={text.description} lang={lang} page="giftVouchers">
+  <section class="gift-hero">
+    <div class="container gift-layout">
+      <div class="gift-heading">
+        <p class="eyebrow">{text.label}</p>
+        <h1 class="page-title">{text.h1}</h1>
+      </div>
+
+      <figure class="gift-voucher-image">
+        <img
+          src={withBase(voucherImage)}
+          alt={text.imageAlt}
+          width="1600"
+          height="1000"
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+
+      <p class="gift-intro">{text.intro}</p>
+
+      <div class="gift-copy">
+        <p class="eyebrow">{text.section}</p>
+        <div class="text-stack">
+          {text.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <a class="button gift-action" href={emailHref}>{text.action}</a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

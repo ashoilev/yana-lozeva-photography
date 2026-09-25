@@ -10,6 +10,7 @@ const imagePath = (file: string) => withBase(`/images/${file}`);
 export const site = {
   name: "Yana Lozeva",
   businessName: "traits",
+  origin: "https://traits.yanalozeva.com",
   location: "Sofia, Bulgaria",
   email: "Yana.lozeva@gmail.com",
   instagram: "https://www.instagram.com/traits.lozeva/",
@@ -25,6 +26,7 @@ export type PortfolioImage = {
   id: string;
   src: string;
   alt: string;
+  altBg: string;
   width: number;
   height: number;
   aspectRatio: number;
@@ -66,7 +68,7 @@ const personalFiles = [
 ] as const;
 
 const professionalFiles = [
-  "DSC_0152s.jpg", "DSC_4892s.jpg", "DSC_5195s.jpg", "DSC_9557s.jpg",
+  "bastun-1.jpg", "bastun-2.jpg", "DSC_5195s.jpg", "DSC_9557s.jpg",
   "DSC_9637s.jpg", "DSC_9780s.jpg", "_DSC0156s.jpg", "_DSC0835s.jpg",
   "_DSC1958s.jpg", "_DSC2078s.jpg", "_DSC2722s.jpg", "_DSC2746_1с.jpg",
   "_DSC2812sm.jpg", "_DSC2816s.jpg", "_DSC3296s.jpg", "_DSC3823см.jpg",
@@ -96,6 +98,7 @@ const makeCollection = (
     id: `${category}-${index + 1}`,
     src: imagePath(`${folder}/${file}`),
     alt: `${label} by Yana Lozeva, image ${index + 1}.`,
+    altBg: `${category === "personal" ? "Личен" : "Професионален"} портрет от портфолиото на Яна Лозева, кадър ${index + 1}.`,
     width,
     height,
     aspectRatio: width / height,

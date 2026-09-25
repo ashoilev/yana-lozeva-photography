@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Място за изображение на подаръчен ваучер</title>
+  <desc id="desc">Редакционен заместител за финалното изображение на подаръчния ваучер за портретна сесия с Яна Лозева.</desc>
+  <rect width="1600" height="1000" fill="#fff"/>
+  <rect x="42" y="42" width="1516" height="916" fill="none" stroke="#0E2FC9" stroke-width="4"/>
+  <text x="110" y="160" fill="#0E2FC9" font-family="Arial, sans-serif" font-size="38" font-weight="700">traits</text>
+  <text x="110" y="486" fill="#0E2FC9" font-family="Arial, sans-serif" font-size="96" font-weight="700">ПОРТРЕТНА СЕСИЯ</text>
+  <text x="110" y="590" fill="#0E2FC9" font-family="Arial, sans-serif" font-size="68">ПОДАРЪЧЕН ВАУЧЕР</text>
+  <text x="110" y="860" fill="#0E2FC9" font-family="Arial, sans-serif" font-size="34" font-weight="700">by Yana Lozeva</text>
+  <text x="1490" y="860" fill="#0E2FC9" font-family="Arial, sans-serif" font-size="28" text-anchor="end">ПРИМЕРНО ИЗОБРАЖЕНИЕ</text>
+</svg>

@@ -1,0 +1,52 @@
+---
+import type { Language } from "../data/i18n";
+import { site } from "../data/site";
+
+type Props = { lang: Language };
+const { lang } = Astro.props;
+---
+
+<div class="calendly-frame" data-calendly-container data-url={site.calendly.url}>
+  <a class="calendly-fallback" href={site.calendly.url} target="_blank" rel="noreferrer">
+    {lang === "bg" ? "Отвори календара за записване" : "Open the booking calendar"}
+  </a>
+</div>
+
+<script is:inline>
+  (() => {
+    const container = document.querySelector("[data-calendly-container]");
+    if (!container) return;
+
+    const loadCalendly = () => {
+      if (container.dataset.loaded) return;
+      container.dataset.loaded = "true";
+      const widget = document.createElement("div");
+      widget.className = "calendly-inline-widget";
+      widget.dataset.url = container.dataset.url;
+      container.replaceChildren(widget);
+
+      if (window.Calendly) {
+        window.Calendly.initInlineWidget({ url: container.dataset.url, parentElement: widget });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.head.appendChild(script);
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      loadCalendly();
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      loadCalendly();
+    }, { rootMargin: "500px" });
+
+    observer.observe(container);
+  })();
+</script>

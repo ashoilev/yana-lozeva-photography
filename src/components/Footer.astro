@@ -1,26 +1,28 @@
 ---
-import { logo, site, withBase } from "../data/site";
+import { getCopy, localizedPath, type Language } from "../data/i18n";
+import { logo, site } from "../data/site";
 
+type Props = { lang: Language };
+const { lang } = Astro.props;
+const text = getCopy(lang);
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <a class="footer-mark" href={withBase()} aria-label="Yana Lozeva home">
-      <img src={logo.src} alt={logo.alt} width="240" height="240" />
-      <span>Yana Lozeva</span>
+    <a class="footer-mark" href={localizedPath(lang)} aria-label={lang === "bg" ? "Начална страница" : "Home"}>
+      <img src={logo.src} alt="" width="240" height="240" loading="lazy" />
+      <span>{lang === "bg" ? "Яна Лозева" : "Yana Lozeva"}</span>
     </a>
-    <p class="footer-meta">
-      Photographer<br />
-      {site.location}<br />
-      © {year} Yana Lozeva
-    </p>
-    <nav aria-label="Footer">
+    <p class="footer-meta">{text.footer.role}<br />{text.footer.location}<br />© {year} {lang === "bg" ? "Яна Лозева" : "Yana Lozeva"}</p>
+    <nav aria-label={lang === "bg" ? "Навигация в долната част" : "Footer navigation"}>
       <ul class="footer-links">
-        <li><a class="plain-link" href={withBase("/work")}>Work</a></li>
-        <li><a class="plain-link" href={withBase("/about")}>About</a></li>
+        <li><a class="plain-link" href={localizedPath(lang, "work")}>{text.nav.work}</a></li>
+        <li><a class="plain-link" href={localizedPath(lang, "portraits")}>{lang === "bg" ? "Лични портрети" : "Personal portraits"}</a></li>
+        <li><a class="plain-link" href={localizedPath(lang, "companies")}>{lang === "bg" ? "За компании" : "For companies"}</a></li>
+        <li><a class="plain-link" href={localizedPath(lang, "giftVouchers")}>{text.footer.giftVouchers}</a></li>
         <li><a class="plain-link" href={site.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
-        <li><a class="plain-link" href={`mailto:${site.email}`}>Email</a></li>
+        <li><a class="plain-link" href={`mailto:${site.email}`}>{text.footer.email}</a></li>
       </ul>
     </nav>
   </div>

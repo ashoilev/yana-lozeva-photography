@@ -1,19 +1,26 @@
 ---
-import { logo, site, withBase } from "../data/site";
+import { getCopy, localizedPath, type Language, type PageKey } from "../data/i18n";
+import { logo, site } from "../data/site";
+
+type Props = { lang: Language; page: PageKey; alternateUrl: string };
+const { lang, page, alternateUrl } = Astro.props;
+const text = getCopy(lang);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="site-mark" href={withBase()} aria-label="Yana Lozeva home">
-      <img src={logo.src} alt={logo.alt} width="240" height="240" />
-      <span>by Yana Lozea</span>
+    <a class="site-mark" href={localizedPath(lang)} aria-label={lang === "bg" ? "Начална страница на Яна Лозева" : "Yana Lozeva home"}>
+      <img src={logo.src} alt="" width="240" height="240" />
+      <span>by Yana Lozeva</span>
     </a>
-    <nav aria-label="Primary">
+    <nav aria-label={lang === "bg" ? "Основна навигация" : "Primary navigation"}>
       <ul class="nav-list">
-        <li><a class="nav-link" href={withBase("/work")}>Work</a></li>
-        <li><a class="nav-link" href={withBase("/about")}>About</a></li>
-        <li><a class="nav-link" href={site.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
-        <li><a class="book-link" href={withBase("/#book")}>Book a portrait</a></li>
+        <li><a class:list={["nav-link", { "nav-link-active": page === "work" }]} href={localizedPath(lang, "work")}>{text.nav.work}</a></li>
+        <li><a class:list={["nav-link", { "nav-link-active": page === "about" }]} href={localizedPath(lang, "about")}>{text.nav.about}</a></li>
+        <li><a class:list={["nav-link", { "nav-link-active": page === "giftVouchers" }]} href={localizedPath(lang, "giftVouchers")}>{text.nav.giftVouchers}</a></li>
+        <li><a class="nav-link" href={site.instagram} target="_blank" rel="noreferrer">{text.nav.instagram}</a></li>
+        <li><a class="language-link" href={alternateUrl} hreflang={lang === "en" ? "bg" : "en"} lang={lang === "en" ? "bg" : "en"}>{text.nav.language}</a></li>
+        <li><a class="book-link" href={localizedPath(lang, "home", "#book")}>{text.nav.book}</a></li>
       </ul>
     </nav>
   </div>

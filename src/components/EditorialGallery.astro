@@ -1,20 +1,23 @@
 ---
 import type { PortfolioImage } from "../data/site";
+import type { Language } from "../data/i18n";
 
 type Props = {
   items: PortfolioImage[];
+  lang: Language;
+  label: string;
 };
 
-const { items } = Astro.props;
+const { items, lang, label } = Astro.props;
 ---
 
-<section class="container editorial-gallery" aria-label="Selected photography">
+<section class="container editorial-gallery" aria-label={label}>
   {
     items.map((item, index) => (
       <figure class:list={["gallery-item", item.orientation]}>
         <img
           src={item.src}
-          alt={item.alt}
+          alt={lang === "bg" ? item.altBg : item.alt}
           width={item.width}
           height={item.height}
           loading={index < 6 ? "eager" : "lazy"}

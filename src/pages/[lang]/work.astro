@@ -1,0 +1,24 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { copy, languages, localizedPath, type Language } from "../../data/i18n";
+import { workImages } from "../../data/site";
+
+export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
+const { lang } = Astro.props as { lang: Language };
+const text = copy[lang].work;
+---
+
+<MainLayout title={text.title} description={text.description} lang={lang} page="work">
+  <header class="work-page-intro">
+    <div><p class="eyebrow">{text.label}</p><p class="work-intro-copy">{text.intro}</p></div>
+    <h1>{text.h1}</h1>
+  </header>
+  <section class="work-wall" aria-label={text.gallery}>
+    {workImages.map((image, index) => (
+      <figure class="work-wall-item">
+        <img src={image.src} alt={lang === "bg" ? image.altBg : image.alt} width={image.width} height={image.height} loading={index < 6 ? "eager" : "lazy"} decoding={index < 3 ? "sync" : "async"} fetchpriority={index < 2 ? "high" : "auto"} sizes="(max-width: 680px) 50vw, (max-width: 980px) 33vw, 25vw" />
+      </figure>
+    ))}
+  </section>
+  <div class="container work-archive-link"><a class="button" href={localizedPath(lang, "home", "#book")}>{copy[lang].nav.book}</a></div>
+</MainLayout>

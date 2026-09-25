@@ -1,0 +1,14 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { copy, localizedPath } from "../data/i18n";
+const text = copy.en.notFound;
+---
+
+<MainLayout title={text.title} description={text.body} lang="en" page="home" noindex={true}>
+  <section class="not-found container">
+    <p class="eyebrow">404</p>
+    <h1>{text.heading}</h1>
+    <p>{text.body}</p>
+    <div class="cta-actions"><a class="button" href={localizedPath("en")}>{text.home}</a><a class="button secondary" href={localizedPath("en", "work")}>{text.work}</a></div>
+  </section>
+</MainLayout>

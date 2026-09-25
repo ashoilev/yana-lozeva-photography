@@ -1,0 +1,23 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import CTA from "../../components/CTA.astro";
+import EditorialGallery from "../../components/EditorialGallery.astro";
+import PageHero from "../../components/PageHero.astro";
+import ServiceBlock from "../../components/ServiceBlock.astro";
+import { copy, languages, localizedPath, type Language } from "../../data/i18n";
+import { personalImages } from "../../data/site";
+
+export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
+const { lang } = Astro.props as { lang: Language };
+const text = copy[lang].portraits;
+const services = text.services.map((service, index) => ({ eyebrow: String(index + 1).padStart(2, "0"), ...service }));
+---
+
+<MainLayout title={text.title} description={text.description} lang={lang} page="portraits">
+  <PageHero eyebrow={text.label} title={text.h1} intro={text.intro} />
+  <EditorialGallery items={personalImages} lang={lang} label={text.label} />
+  <section class="content-band">
+    <div class="container service-grid"><div><p class="eyebrow">{text.section}</p></div><ServiceBlock services={services} /></div>
+  </section>
+  <CTA eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.action} primaryHref={localizedPath(lang, "home", "#book")} />
+</MainLayout>
