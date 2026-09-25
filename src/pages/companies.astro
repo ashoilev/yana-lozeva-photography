@@ -4,7 +4,7 @@ import CTA from "../components/CTA.astro";
 import EditorialGallery from "../components/EditorialGallery.astro";
 import PageHero from "../components/PageHero.astro";
 import ServiceBlock from "../components/ServiceBlock.astro";
-import { images, site } from "../data/site";
+import { corporateImages, site } from "../data/site";
 ---
 
 <MainLayout
@@ -17,13 +17,7 @@ import { images, site } from "../data/site";
     intro="Your team does not need to look corporate to look professional."
   />
 
-  <EditorialGallery
-    items={[
-      { ...images.companyPortrait, variant: "tall", caption: "Employee portraits" },
-      { ...images.companyTeam, variant: "wide", caption: "Team portraits" },
-      { ...images.hero, variant: "full" }
-    ]}
-  />
+  <EditorialGallery items={corporateImages} />
 
   <section class="content-band">
     <div class="container service-grid">

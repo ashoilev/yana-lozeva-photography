@@ -4,7 +4,7 @@ import CTA from "../components/CTA.astro";
 import EditorialGallery from "../components/EditorialGallery.astro";
 import PageHero from "../components/PageHero.astro";
 import ServiceBlock from "../components/ServiceBlock.astro";
-import { images, withBase } from "../data/site";
+import { personalImages, withBase } from "../data/site";
 ---
 
 <MainLayout
@@ -17,14 +17,7 @@ import { images, withBase } from "../data/site";
     intro="A portrait session can be quiet, direct and surprisingly easy. You do not need to arrive knowing how to stand, look or perform."
   />
 
-  <EditorialGallery
-    items={[
-      { ...images.hero, variant: "tall", caption: "Individual portraits" },
-      { ...images.couple, variant: "wide", caption: "Couples" },
-      { ...images.family, variant: "full", caption: "Families and children" },
-      { ...images.companyPortrait, variant: "offset" }
-    ]}
-  />
+  <EditorialGallery items={personalImages} />
 
   <section class="content-band">
     <div class="container service-grid">

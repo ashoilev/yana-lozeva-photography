@@ -1,14 +1,8 @@
 ---
-type ImageItem = {
-  src: string;
-  alt: string;
-  caption?: string;
-  variant: "tall" | "wide" | "full" | "offset";
-  loading?: "eager" | "lazy";
-};
+import type { PortfolioImage } from "../data/site";
 
 type Props = {
-  items: ImageItem[];
+  items: PortfolioImage[];
 };
 
 const { items } = Astro.props;
@@ -16,17 +10,17 @@ const { items } = Astro.props;
 
 <section class="container editorial-gallery" aria-label="Selected photography">
   {
-    items.map((item) => (
-      <figure class={`gallery-item ${item.variant}`}>
+    items.map((item, index) => (
+      <figure class:list={["gallery-item", item.orientation]}>
         <img
           src={item.src}
           alt={item.alt}
-          width={item.variant === "wide" || item.variant === "full" ? "1536" : "1024"}
-          height={item.variant === "wide" || item.variant === "full" ? "1024" : "1536"}
-          loading={item.loading ?? "lazy"}
+          width={item.width}
+          height={item.height}
+          loading={index < 6 ? "eager" : "lazy"}
           decoding="async"
+          sizes="(max-width: 680px) 50vw, (max-width: 980px) 33vw, 25vw"
         />
-        {item.caption && <figcaption class="caption">{item.caption}</figcaption>}
       </figure>
     ))
   }
