@@ -1,3 +1,5 @@
 ---
-return Astro.redirect("/en/", 302);
+import { localizedPath } from "../data/i18n";
+
+return Astro.redirect(localizedPath("en"), 302);
 ---

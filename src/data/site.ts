@@ -10,7 +10,7 @@ const imagePath = (file: string) => withBase(`/images/${file}`);
 export const site = {
   name: "Yana Lozeva",
   businessName: "traits",
-  origin: "https://traits.yanalozeva.com",
+  origin: "https://ashoilev.github.io/yana-lozeva-photography",
   location: "Sofia, Bulgaria",
   email: "Yana.lozeva@gmail.com",
   instagram: "https://www.instagram.com/traits.lozeva/",
