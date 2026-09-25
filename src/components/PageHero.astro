@@ -15,18 +15,29 @@ const { eyebrow, title, intro, image, portraitLayout = false } = Astro.props;
 
 <section class="page-hero">
   <div class:list={["container", "page-hero-grid", { "portrait-layout": portraitLayout }]}>
-    <div>
-      <p class="eyebrow">{eyebrow}</p>
-      <h1 class="page-title">{title}</h1>
-      {portraitLayout && <p class="page-intro">{intro}</p>}
-    </div>
-    <div>
-      {!portraitLayout && <p class="page-intro">{intro}</p>}
-      {image && (
-        <figure class="about-portrait">
-          <img src={image.src} alt={image.alt} width="1024" height="1536" loading="eager" decoding="async" />
-        </figure>
-      )}
-    </div>
+    {portraitLayout ? (
+      <>
+        <div class="page-hero-heading">
+          <p class="eyebrow">{eyebrow}</p>
+          <h1 class="page-title">{title}</h1>
+        </div>
+        {image && (
+          <figure class="about-portrait">
+            <img src={image.src} alt={image.alt} width="1024" height="1024" loading="eager" decoding="async" />
+          </figure>
+        )}
+        <p class="page-intro">{intro}</p>
+      </>
+    ) : (
+      <>
+        <div>
+          <p class="eyebrow">{eyebrow}</p>
+          <h1 class="page-title">{title}</h1>
+        </div>
+        <div>
+          <p class="page-intro">{intro}</p>
+        </div>
+      </>
+    )}
   </div>
 </section>

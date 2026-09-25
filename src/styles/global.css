@@ -601,7 +601,21 @@ h3 {
   align-items: center;
 }
 
+.portrait-layout .page-hero-heading {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+}
+
+.portrait-layout .about-portrait {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
 .portrait-layout .page-intro {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
   margin-top: clamp(24px, 3vw, 42px);
   max-width: 19ch;
   font-size: clamp(1.4rem, 2.35vw, 2.8rem);
@@ -852,9 +866,20 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .page-hero-grid.portrait-layout {
+    grid-template-columns: 1fr;
+  }
+
   .header-inner {
     gap: 14px;
     padding: 16px 0;
+  }
+
+  .portrait-layout .page-hero-heading,
+  .portrait-layout .about-portrait,
+  .portrait-layout .page-intro {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .nav-list,
@@ -909,11 +934,16 @@ h3 {
     gap: 12px;
   }
 
+  .site-mark {
+    justify-self: center;
+  }
+
   .nav-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: stretch;
-    gap: 8px 16px;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    gap: 8px clamp(18px, 8vw, 42px);
+    text-align: center;
   }
 
   .book-link {
@@ -929,6 +959,7 @@ h3 {
     display: inline-flex;
     min-height: 40px;
     align-items: center;
+    justify-content: center;
   }
 
   .site-mark span {
