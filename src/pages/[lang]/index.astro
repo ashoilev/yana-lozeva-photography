@@ -2,7 +2,7 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import HomeGallery from "../../components/HomeGallery.astro";
 import LazyCalendly from "../../components/LazyCalendly.astro";
-import { copy, languages, localizedPath, type Language } from "../../data/i18n";
+import { copy, languages, type Language } from "../../data/i18n";
 import { corporateImages, homepageImages, personalImages, site } from "../../data/site";
 
 export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
@@ -24,7 +24,6 @@ const corporateMailto = `mailto:${site.email}?subject=${encodeURIComponent(text.
       </div>
       <div class="text-stack">
         {text.home.intro.map((paragraph) => <p>{paragraph}</p>)}
-        <a class="text-link" href={localizedPath(lang, "about")}>{text.home.more}</a>
       </div>
     </div>
   </section>
@@ -55,7 +54,6 @@ const corporateMailto = `mailto:${site.email}?subject=${encodeURIComponent(text.
         </div>
       </article>
     </div>
-    <div class="container work-archive-link"><a class="button" href={localizedPath(lang, "work")}>{text.home.allWork}</a></div>
   </section>
 
   <section id="book" class="booking-embed" aria-labelledby="book-title">

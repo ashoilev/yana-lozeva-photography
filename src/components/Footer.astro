@@ -17,7 +17,6 @@ const year = new Date().getFullYear();
     <p class="footer-meta">{text.footer.role}<br />{text.footer.location}<br />© {year} {lang === "bg" ? "Яна Лозева" : "Yana Lozeva"}</p>
     <nav aria-label={lang === "bg" ? "Навигация в долната част" : "Footer navigation"}>
       <ul class="footer-links">
-        <li><a class="plain-link" href={localizedPath(lang, "work")}>{text.nav.work}</a></li>
         <li><a class="plain-link" href={localizedPath(lang, "portraits")}>{lang === "bg" ? "Лични портрети" : "Personal portraits"}</a></li>
         <li><a class="plain-link" href={localizedPath(lang, "companies")}>{lang === "bg" ? "За компании" : "For companies"}</a></li>
         <li><a class="plain-link" href={localizedPath(lang, "giftVouchers")}>{text.footer.giftVouchers}</a></li>

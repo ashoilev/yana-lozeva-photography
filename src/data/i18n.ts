@@ -2,12 +2,10 @@ import { withBase } from "./site";
 
 export const languages = ["en", "bg"] as const;
 export type Language = (typeof languages)[number];
-export type PageKey = "home" | "work" | "about" | "portraits" | "companies" | "contact" | "giftVouchers";
+export type PageKey = "home" | "portraits" | "companies" | "contact" | "giftVouchers";
 
 export const pageSlugs: Record<PageKey, string> = {
   home: "",
-  work: "work",
-  about: "about",
   portraits: "portraits",
   companies: "companies",
   contact: "contact",

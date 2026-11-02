@@ -15,8 +15,6 @@ const text = getCopy(lang);
     </a>
     <nav aria-label={lang === "bg" ? "Основна навигация" : "Primary navigation"}>
       <ul class="nav-list">
-        <li><a class:list={["nav-link", { "nav-link-active": page === "work" }]} href={localizedPath(lang, "work")}>{text.nav.work}</a></li>
-        <li><a class:list={["nav-link", { "nav-link-active": page === "about" }]} href={localizedPath(lang, "about")}>{text.nav.about}</a></li>
         <li><a class:list={["nav-link", { "nav-link-active": page === "giftVouchers" }]} href={localizedPath(lang, "giftVouchers")}>{text.nav.giftVouchers}</a></li>
         <li><a class="nav-link" href={site.instagram} target="_blank" rel="noreferrer">{text.nav.instagram}</a></li>
         <li><a class="language-link" href={alternateUrl} hreflang={lang === "en" ? "bg" : "en"} lang={lang === "en" ? "bg" : "en"}>{text.nav.language}</a></li>
