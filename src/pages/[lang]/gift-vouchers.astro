@@ -6,7 +6,6 @@ import { site, withBase } from "../../data/site";
 export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
 const { lang } = Astro.props as { lang: Language };
 const text = copy[lang].giftVouchers;
-const emailHref = `mailto:${site.email}?subject=${encodeURIComponent(text.emailSubject)}&body=${encodeURIComponent(text.emailBody)}`;
 const voucherImage = lang === "bg" ? "/images/gift-voucher-placeholder-bg.svg" : "/images/gift-voucher-placeholder.svg";
 ---
 
@@ -34,9 +33,8 @@ const voucherImage = lang === "bg" ? "/images/gift-voucher-placeholder-bg.svg" :
       <div class="gift-copy">
         <p class="eyebrow">{text.section}</p>
         <div class="text-stack">
-          {text.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          <p>{text.emailLead} <a class="gift-email" href={`mailto:${site.email}`}>{site.email.toLowerCase()}</a> {text.emailTail}</p>
         </div>
-        <a class="button gift-action" href={emailHref}>{text.action}</a>
       </div>
     </div>
   </section>

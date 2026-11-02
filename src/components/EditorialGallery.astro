@@ -9,12 +9,20 @@ type Props = {
 };
 
 const { items, lang, label } = Astro.props;
+const trailingItems = (columns: number) => items.length % columns;
+const hiddenFrom = (columns: number) => items.length - trailingItems(columns);
 ---
 
 <section class="container editorial-gallery" aria-label={label}>
   {
     items.map((item, index) => (
-      <figure class:list={["gallery-item", item.orientation]}>
+      <figure class:list={[
+        "gallery-item",
+        item.orientation,
+        { "gallery-hide-desktop": trailingItems(4) > 0 && index >= hiddenFrom(4) },
+        { "gallery-hide-tablet": trailingItems(3) > 0 && index >= hiddenFrom(3) },
+        { "gallery-hide-mobile": trailingItems(2) > 0 && index >= hiddenFrom(2) }
+      ]}>
         <img
           src={item.src}
           alt={lang === "bg" ? item.altBg : item.alt}

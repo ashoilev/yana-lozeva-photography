@@ -678,6 +678,10 @@ h3 {
   filter: grayscale(1);
 }
 
+.gallery-hide-desktop {
+  display: none;
+}
+
 .content-band {
   padding: var(--section) 0;
   border-top: 1px solid var(--line);
@@ -941,10 +945,8 @@ h3 {
   grid-column: 2;
 }
 
-.gift-action {
-  grid-column: 2;
-  width: max-content;
-  margin-top: 8px;
+.gift-email {
+  border-bottom: 1px solid currentColor;
 }
 
 .portrait-layout .about-portrait img {
@@ -1021,8 +1023,7 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .gift-copy .text-stack,
-  .gift-action {
+  .gift-copy .text-stack {
     grid-column: 1;
   }
 
@@ -1065,6 +1066,14 @@ h3 {
 
   .editorial-gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery-hide-desktop {
+    display: block;
+  }
+
+  .gallery-hide-tablet {
+    display: none;
   }
 
   .work-path-copy {
@@ -1124,10 +1133,6 @@ h3 {
     padding-top: clamp(48px, 13vw, 72px);
   }
 
-  .gift-action {
-    width: 100%;
-  }
-
   .nav-link {
     display: inline-flex;
     min-height: 40px;
@@ -1159,6 +1164,14 @@ h3 {
 
   .editorial-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-hide-tablet {
+    display: block;
+  }
+
+  .gallery-hide-mobile {
+    display: none;
   }
 
   .wall-frame {
