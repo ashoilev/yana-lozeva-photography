@@ -6,7 +6,7 @@ import { site, withBase } from "../../data/site";
 export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
 const { lang } = Astro.props as { lang: Language };
 const text = copy[lang].giftVouchers;
-const voucherImage = lang === "bg" ? "/images/gift-voucher-placeholder-bg.svg" : "/images/gift-voucher-placeholder.svg";
+const voucherImage = "/images/traitsvoucher138.jpg";
 ---
 
 <MainLayout title={text.title} description={text.description} lang={lang} page="giftVouchers">
@@ -21,8 +21,8 @@ const voucherImage = lang === "bg" ? "/images/gift-voucher-placeholder-bg.svg" :
         <img
           src={withBase(voucherImage)}
           alt={text.imageAlt}
-          width="1600"
-          height="1000"
+          width="1685"
+          height="2200"
           loading="eager"
           decoding="async"
         />

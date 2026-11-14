@@ -17,7 +17,7 @@ export const site = {
   calendly: { url: "https://calendly.com/traits" }
 };
 
-export const logo = { src: imagePath("traits.jpg"), alt: "traits" };
+export const logo = { src: imagePath("traits.png"), alt: "traits" };
 
 export type PortfolioCategory = "personal" | "corporate";
 export type PortfolioOrientation = "portrait" | "landscape" | "square";
@@ -47,7 +47,7 @@ const personalFiles = [
   "_DSC2420.jpg", "_DSC2528bwс.jpg", "_DSC2593.jpg", "_DSC2754s.jpg",
   "_DSC2789sm.jpg", "_DSC2793с.jpg", "_DSC2850s.jpg", "_DSC2879с.jpg",
   "_DSC2958s.jpg", "_DSC3218s.jpg", "_DSC332s9.jpg", "_DSC3350s.jpg",
-  "_DSC3436s.jpg", "_DSC3553sm.jpg", "_DSC3703s.jpg", "_DSC3909sm.jpg",
+  "_DSC3436s.jpg", "_DSC3703s.jpg", "_DSC3909sm.jpg",
   "_DSC3911s.jpg", "_DSC3947с.jpg", "_DSC3952.jpg", "_DSC4050s.jpg",
   "_DSC4100s.jpg", "_DSC4140s.jpg", "_DSC4232.jpg", "_DSC4655s.jpg",
   "_DSC4678sm.jpg", "_DSC4686s.jpg", "_DSC4789s.jpg", "_DSC4796s.jpg",
@@ -115,7 +115,6 @@ const scatterThroughCollection = (
 const professionalFiles = scatterThroughCollection(professionalSourceFiles, professionalColorFiles);
 
 const dimensionsFor = (file: string): [number, number] => {
-  if (file === "_DSC3553sm.jpg") return [1335, 2000];
   if (file === "_DSC4678sm.jpg") return [2000, 1335];
   return [1, 1];
 };

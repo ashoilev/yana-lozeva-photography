@@ -127,6 +127,7 @@ h3 {
   height: 42px;
   object-fit: contain;
   background: transparent;
+  clip-path: inset(0 0.7% 0.7% 0);
 }
 
 .footer-mark img {
@@ -929,7 +930,8 @@ h3 {
 
 .gift-voucher-image {
   grid-area: image;
-  margin: 0;
+  width: 80%;
+  margin-inline: auto;
   align-self: center;
 }
 
