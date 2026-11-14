@@ -93,7 +93,7 @@ const scatterThroughCollection = (
 ) => {
   const featured = new Set(featuredFiles);
   const remaining = files.filter((file) => !featured.has(file));
-  const result = [...remaining, ...featuredFiles, ...featuredFiles];
+  const result = [...remaining, ...featuredFiles];
   let seed = 42;
 
   const random = () => {

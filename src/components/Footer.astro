@@ -1,6 +1,6 @@
 ---
 import { getCopy, localizedPath, type Language } from "../data/i18n";
-import { logo, site } from "../data/site";
+import { site } from "../data/site";
 
 type Props = { lang: Language };
 const { lang } = Astro.props;
@@ -10,11 +10,7 @@ const year = new Date().getFullYear();
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <a class="footer-mark" href={localizedPath(lang)} aria-label={lang === "bg" ? "Начална страница" : "Home"}>
-      <img src={logo.src} alt="" width="240" height="240" loading="lazy" />
-      <span>{lang === "bg" ? "Яна Лозева" : "Yana Lozeva"}</span>
-    </a>
-    <p class="footer-meta">{text.footer.role}<br />{text.footer.location}<br />© {year} {lang === "bg" ? "Яна Лозева" : "Yana Lozeva"}</p>
+    <p class="footer-meta">© {year} Yana Lozeva</p>
     <nav aria-label={lang === "bg" ? "Навигация в долната част" : "Footer navigation"}>
       <ul class="footer-links">
         <li><a class="plain-link" href={localizedPath(lang, "portraits")}>{lang === "bg" ? "Лични портрети" : "Personal portraits"}</a></li>
