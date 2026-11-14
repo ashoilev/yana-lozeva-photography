@@ -3,13 +3,13 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import HomeGallery from "../../components/HomeGallery.astro";
 import LazyCalendly from "../../components/LazyCalendly.astro";
 import { copy, languages, type Language } from "../../data/i18n";
-import { corporateImages, homepageImages, personalImages, site, withBase } from "../../data/site";
+import { corporateHomepageImages, homepageImages, personalHomepageImages, site, withBase } from "../../data/site";
 
 export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
 const { lang } = Astro.props as { lang: Language };
 const text = copy[lang];
-const personalPreview = personalImages.slice(0, 4);
-const corporatePreview = corporateImages.slice(0, 4);
+const personalPreview = personalHomepageImages;
+const corporatePreview = corporateHomepageImages;
 const corporateMailto = `mailto:${site.email}?subject=${encodeURIComponent(text.companies.cta.subject)}`;
 ---
 

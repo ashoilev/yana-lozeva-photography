@@ -130,6 +130,16 @@ h3 {
   clip-path: inset(0 0.7% 0.7% 0);
 }
 
+.site-credit {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.site-name {
+  font-weight: 800;
+}
+
 .footer-mark img {
   width: 58px;
   height: 58px;
@@ -1165,7 +1175,7 @@ h3 {
     justify-content: center;
   }
 
-  .site-mark span {
+  .site-credit {
     font-size: 0.72rem;
   }
 
