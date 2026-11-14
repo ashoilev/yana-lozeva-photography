@@ -7,9 +7,10 @@ type Props = {
   primaryHref: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  hideBody?: boolean;
 };
 
-const { eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, secondaryHref } = Astro.props;
+const { eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, secondaryHref, hideBody = false } = Astro.props;
 ---
 
 <section class="container">
@@ -19,7 +20,7 @@ const { eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, seconda
       <h2>{title}</h2>
     </div>
     <div>
-      <p>{body}</p>
+      {hideBody ? <p class="cta-body-placeholder" aria-hidden="true"></p> : <p>{body}</p>}
       <div class="cta-actions">
         <a class="button" href={primaryHref}>{primaryLabel}</a>
         {secondaryLabel && secondaryHref && (

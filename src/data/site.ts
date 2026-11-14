@@ -67,7 +67,7 @@ const personalFiles = [
   "_DSC9917s.jpg", "_DSC9928s.jpg"
 ] as const;
 
-const professionalFiles = [
+const professionalSourceFiles = [
   "bastun-1.jpg", "bastun-2.jpg", "DSC_5195s.jpg", "DSC_9557s.jpg",
   "DSC_9637s.jpg", "DSC_9780s.jpg", "_DSC0156s.jpg", "_DSC0835s.jpg",
   "_DSC1958s.jpg", "_DSC2078s.jpg", "_DSC2722s.jpg", "_DSC2746_1с.jpg",
@@ -78,6 +78,41 @@ const professionalFiles = [
   "_DSC7064sm.jpg", "_DSC7458bws.jpg", "_DSC8331s.jpg", "_DSC9211s.jpg",
   "_DSC9246BWs.jpg", "_DSC9301s.jpg", "_DSC9958_1s.jpg"
 ] as const;
+
+const professionalColorFiles = [
+  "_DSC2722s.jpg",
+  "_DSC2746_1с.jpg",
+  "_DSC3823см.jpg",
+  "_DSC4081s.jpg",
+  "_DSC5559sm.jpg"
+] as const;
+
+const scatterThroughCollection = (
+  files: readonly string[],
+  featuredFiles: readonly string[]
+) => {
+  const featured = new Set(featuredFiles);
+  const remaining = files.filter((file) => !featured.has(file));
+  const result = [...remaining, ...featuredFiles, ...featuredFiles];
+  let seed = 42;
+
+  const random = () => {
+    seed += 0x6d2b79f5;
+    let value = seed;
+    value = Math.imul(value ^ (value >>> 15), value | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1));
+    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+  }
+
+  return result;
+};
+
+const professionalFiles = scatterThroughCollection(professionalSourceFiles, professionalColorFiles);
 
 const dimensionsFor = (file: string): [number, number] => {
   if (file === "_DSC3553sm.jpg") return [1335, 2000];

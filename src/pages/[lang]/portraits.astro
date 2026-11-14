@@ -14,10 +14,10 @@ const services = text.services.map((service, index) => ({ eyebrow: String(index 
 ---
 
 <MainLayout title={text.title} description={text.description} lang={lang} page="portraits">
-  <PageHero eyebrow={text.label} title={text.h1} intro={text.intro} />
+  <PageHero eyebrow={text.label} title={text.h1} intro={text.intro} hideTitle />
   <EditorialGallery items={personalImages} lang={lang} label={text.label} />
   <section class="content-band">
     <div class="container service-grid"><div><p class="eyebrow">{text.section}</p></div><ServiceBlock services={services} /></div>
   </section>
-  <CTA eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.action} primaryHref={localizedPath(lang, "home", "#book")} />
+  <CTA eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.action} primaryHref={localizedPath(lang, "home", "#book")} hideBody />
 </MainLayout>
