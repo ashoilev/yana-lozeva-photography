@@ -3,7 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import HomeGallery from "../../components/HomeGallery.astro";
 import LazyCalendly from "../../components/LazyCalendly.astro";
 import { copy, languages, type Language } from "../../data/i18n";
-import { corporateImages, homepageImages, personalImages, site } from "../../data/site";
+import { corporateImages, homepageImages, personalImages, site, withBase } from "../../data/site";
 
 export const getStaticPaths = () => languages.map((lang) => ({ params: { lang }, props: { lang } }));
 const { lang } = Astro.props as { lang: Language };
@@ -18,9 +18,18 @@ const corporateMailto = `mailto:${site.email}?subject=${encodeURIComponent(text.
 
   <section class="intro-line intro-yana" aria-labelledby="about-yana">
     <div class="container intro-yana-grid">
-      <div>
-        <p class="eyebrow">{text.home.eyebrow}</p>
-        <h1 id="about-yana">{text.home.h1}</h1>
+      <div class="intro-yana-visual">
+        <h1 id="about-yana" class="visually-hidden">{text.home.h1}</h1>
+        <figure class="intro-yana-portrait">
+          <img
+            src={withBase("/images/yana-lozeva.jpeg")}
+            alt={lang === "bg" ? "Портрет на Яна Лозева" : "Portrait of Yana Lozeva"}
+            width="1024"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       </div>
       <div class="text-stack">
         {text.home.intro.map((paragraph) => <p>{paragraph}</p>)}

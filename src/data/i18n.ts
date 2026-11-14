@@ -28,7 +28,7 @@ export const copy = {
       eyebrow: "Yana Lozeva",
       h1: "Portrait photographer, Sofia",
       intro: [
-        "I am Yana, and I really love making portraits. I photograph people individually, together, and at work.",
+        "I am Yana, and I love making portraits. I photograph people individually, together, and at work.",
         "My approach is relaxed and direct, and works for people who do not naturally feel comfortable in front of a camera.",
         "I am based in Sofia and available throughout Europe.",
         "You do not need to be prepared for posing. I will help you with that part, keeping the session simple, calm, and specific to you."
@@ -57,7 +57,7 @@ export const copy = {
       description: "Портретен фотограф в София с естествен и редакционен подход към индивидуални, семейни, двойки и екипни портрети.",
       eyebrow: "Яна Лозева",
       h1: "Портретен фотограф, София",
-      intro: ["Аз съм Яна и наистина обичам да правя портрети. Снимам хора самостоятелно, заедно и в работна среда.", "Подходът ми е спокоен и директен и е подходящ за хора, които не се чувстват естествено пред камера.", "Базирана съм в София и работя в цяла Европа.", "Не е нужно да сте подготвени за позиране. Ще ви помогна с тази част, така че сесията да остане проста, спокойна и съобразена с вас."],
+      intro: ["Аз съм Яна и обичам да правя портрети. Снимам хора самостоятелно, заедно и в работна среда.", "Подходът ми е спокоен и директен и е подходящ за хора, които не се чувстват естествено пред камера.", "Базирана съм в София и работя в цяла Европа.", "Не е нужно да сте подготвени за позиране. Ще ви помогна с тази част, така че сесията да остане проста, спокойна и съобразена с вас."],
       more: "Повече за Яна",
       servicesLabel: "Портретна фотография",
       personal: { label: "Лични портрети", title: "Индивидуални, двойки, семейства, деца", body: "Не е нужно да сте подготвени за позирането. Аз ще ви помогна с тази част, така че сесията да остане семпла, спокойна и съобразена с вас.", action: "Запази портретна сесия", gallery: "Примери за лични портрети" },
