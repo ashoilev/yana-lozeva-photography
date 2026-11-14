@@ -76,7 +76,7 @@ const professionalSourceFiles = [
   "_DSC5559sm.jpg", "_DSC5976s.jpg", "_DSC6149s.jpg", "_DSC6438sm.jpg",
   "_DSC6601s.jpg", "_DSC6780s.jpg", "_DSC6836s.jpg", "_DSC6952с.jpg",
   "_DSC7064sm.jpg", "_DSC7458bws.jpg", "_DSC8331s.jpg", "_DSC9211s.jpg",
-  "proff_DSC6452s.jpg",
+  "proff_DSC6452s.jpg", "proff_DSC7513.jpg",
   "_DSC9246BWs.jpg", "_DSC9301s.jpg", "_DSC9958_1s.jpg"
 ] as const;
 
@@ -153,6 +153,14 @@ const corporateHomepageFiles = ["_DSC4081s.jpg", "_DSC6780s.jpg", "DSC_9780s.jpg
 export const corporateHomepageImages = corporateHomepageFiles
   .map((file) => corporateImages.find((image) => image.src.endsWith(`/${file}`)))
   .filter((image): image is PortfolioImage => Boolean(image));
+const corporateGalleryFeaturedFiles = ["proff_DSC6452s.jpg", "proff_DSC7513.jpg"];
+const corporateGalleryFeatured = corporateGalleryFeaturedFiles
+  .map((file) => corporateImages.find((image) => image.src.endsWith(`/${file}`)))
+  .filter((image): image is PortfolioImage => Boolean(image));
+export const corporateGalleryImages = [
+  ...corporateGalleryFeatured,
+  ...corporateImages.filter((image) => !corporateGalleryFeatured.includes(image))
+];
 export const portfolioImages = [...personalImages, ...corporateImages];
 export const homepageImages = Array.from(
   { length: Math.max(personalImages.length, corporateImages.length) },

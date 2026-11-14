@@ -29,13 +29,7 @@ const voucherImage = "/images/traitsvoucher138.jpg";
       </figure>
 
       <p class="gift-intro">{text.intro}</p>
-
-      <div class="gift-copy">
-        <p class="eyebrow">{text.section}</p>
-        <div class="text-stack">
-          <p>{text.emailLead} <a class="gift-email" href={`mailto:${site.email}`}>{site.email.toLowerCase()}</a> {text.emailTail}</p>
-        </div>
-      </div>
+      <p class="gift-email-copy">{text.emailLead} <a class="gift-email" href={`mailto:${site.email}`}>{site.email.toLowerCase()}</a> {text.emailTail}</p>
     </div>
   </section>
 </MainLayout>
