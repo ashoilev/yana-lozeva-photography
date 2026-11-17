@@ -2,8 +2,8 @@
 import { getCopy, localizedPath, type Language } from "../data/i18n";
 import { site } from "../data/site";
 
-type Props = { lang: Language };
-const { lang } = Astro.props;
+type Props = { lang: Language; alternateUrl: string };
+const { lang, alternateUrl } = Astro.props;
 const text = getCopy(lang);
 const year = new Date().getFullYear();
 ---
@@ -18,6 +18,7 @@ const year = new Date().getFullYear();
         <li><a class="plain-link" href={localizedPath(lang, "giftVouchers")}>{text.footer.giftVouchers}</a></li>
         <li><a class="plain-link" href={site.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
         <li><a class="plain-link" href={`mailto:${site.email}`}>{text.footer.email}</a></li>
+        <li><a class="plain-link" href={alternateUrl} hreflang={lang === "en" ? "bg" : "en"} lang={lang === "en" ? "bg" : "en"}>{text.nav.language}</a></li>
       </ul>
     </nav>
   </div>
