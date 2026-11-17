@@ -11,6 +11,7 @@
   --edge-inset: 10px;
   --max: min(1420px, calc(100% - 40px));
   --gutter: clamp(20px, 4vw, 64px);
+  --process-step-pad: clamp(22px, 3vw, 34px);
   --section: clamp(72px, 11vw, 168px);
   --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -157,7 +158,6 @@ h3 {
 }
 
 .nav-link,
-.language-link,
 .plain-link {
   color: var(--muted);
   font-size: 0.78rem;
@@ -169,9 +169,13 @@ h3 {
 
 .nav-link:hover,
 .nav-link-active,
-.language-link:hover,
 .plain-link:hover {
   color: var(--accent);
+}
+
+/* Top-bar links with a shorter phone label: only one label is rendered (and announced) at a time. */
+.nav-label-short {
+  display: none;
 }
 
 .book-link,
@@ -197,6 +201,20 @@ h3 {
   background: var(--accent);
   color: var(--white);
   transform: translateY(-1px);
+}
+
+/* The top-bar booking button is filled (active look) by default. */
+.book-link {
+  background: var(--accent);
+  color: var(--white);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.book-link:hover {
+  background: var(--accent);
+  color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(14, 47, 201, 0.28);
 }
 
 .button.secondary {
@@ -767,7 +785,7 @@ h3 {
 
 .process-step {
   min-height: 220px;
-  padding: clamp(22px, 3vw, 34px);
+  padding: var(--process-step-pad);
   background: var(--paper);
 }
 
@@ -883,11 +901,19 @@ h3 {
   resize: vertical;
 }
 
+/*
+ * The right column lines up with process steps 02 + 03 above it (companies page).
+ * The steps fill the right column of .text-grid (minmax(180px, 0.36fr) minmax(0, 1fr), gap --gutter),
+ * which is (100% - gutter) / 1.36 wide while its left column is above the 180px floor (true above 980px).
+ * .process splits that into three columns with 1px gaps, so steps 02 + 03 span (2 * steps - 1px) / 3.
+ * .cta-side then indents by the same padding as .process-step.
+ */
 .cta {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+  grid-template-columns: minmax(0, 1fr) calc(((100% - var(--gutter)) / 1.36 * 2 - 1px) / 3);
   gap: var(--gutter);
-  align-items: end;
+  column-gap: 0;
+  align-items: start;
   padding: clamp(44px, 7vw, 100px) 0;
   border-top: 1px solid var(--accent);
 }
@@ -899,6 +925,24 @@ h3 {
 
 .cta .cta-body-placeholder {
   min-height: 3.9em;
+}
+
+.cta-side {
+  padding-left: var(--process-step-pad);
+}
+
+.cta.cta-centered {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  text-align: center;
+}
+
+.cta-centered p {
+  margin-inline: auto;
+}
+
+.cta-centered .cta-actions {
+  justify-content: center;
 }
 
 .about-portrait img {
@@ -1078,6 +1122,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .cta-side {
+    padding-left: 0;
+  }
+
   .editorial-gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1134,6 +1182,14 @@ h3 {
     flex: 1 0 100%;
   }
 
+  .nav-label-full {
+    display: none;
+  }
+
+  .nav-label-short {
+    display: inline;
+  }
+
   .gift-hero {
     padding: clamp(62px, 15vw, 88px) 0;
   }
@@ -1143,13 +1199,6 @@ h3 {
   }
 
   .nav-link {
-    display: inline-flex;
-    min-height: 40px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .language-link {
     display: inline-flex;
     min-height: 40px;
     align-items: center;
@@ -1395,5 +1444,121 @@ h3,
 
   .process-band .page-intro {
     padding-inline: 0;
+  }
+}
+
+/*
+ * Section divider rhythm. Kept last so it wins over the rules above at equal specificity.
+ * Every section divider line gets the same space above and below it: --divider-space.
+ * Phones: 88px, the doubled closing-section padding (2 x 44px) the owner chose. From 800px it
+ * follows the site's section spacing (--section, 11vw) up to the same 168px cap.
+ * Not section dividers: the header's bottom line on desktop, and the footer's inner spacing below its top line.
+ */
+:root {
+  --divider-space: max(88px, var(--section));
+}
+
+/* Home: photo grid, the line under it, about section, work paths, booking. */
+.home-gallery {
+  padding-bottom: var(--divider-space);
+}
+
+/* The line under the photo grid is dark and stops at the text margins, like the other dark dividers. */
+.intro-yana {
+  padding: 0;
+  border-top: 0;
+}
+
+.intro-yana-grid {
+  padding-top: var(--divider-space);
+  border-top: 1px solid var(--accent);
+}
+
+.work-section {
+  padding: var(--divider-space) 0;
+}
+
+.work-paths {
+  gap: var(--divider-space);
+}
+
+.work-path {
+  padding-top: var(--divider-space);
+}
+
+/* The footer's top line closes this section; a bottom line here stacked a second line on it. */
+.booking-embed {
+  padding: var(--divider-space) 0;
+  border-bottom: 0;
+}
+
+/* Portraits + companies: gallery, content bands, closing section. */
+.editorial-gallery {
+  padding-bottom: var(--divider-space);
+}
+
+.editorial-gallery ~ .content-band {
+  padding: var(--divider-space) 0;
+}
+
+.cta {
+  padding: var(--divider-space) 0;
+}
+
+/*
+ * Work-path headings (home): the normal h2 size, shrunk only where the longest word,
+ * "Индивидуални," (about 9em wide), would not fit its column whole. Sized from the column itself,
+ * so one rule covers every width; 9.4em leaves about 4% breathing room. Same rule for both languages.
+ * Guarded because the size uses container units: without them the heading keeps the normal h2 size.
+ */
+.work-path-copy h2 {
+  max-width: none;
+}
+
+@supports (container-type: inline-size) {
+  .work-path-copy {
+    container-type: inline-size;
+  }
+
+  .work-path-copy h2 {
+    font-size: min(var(--heading-h2), 100cqi / 9.4);
+  }
+}
+
+/* Stacked layouts (tablet and phone). */
+@media (max-width: 980px) {
+  /* Heroes with a hidden title (portraits, companies): the intro follows the eyebrow at the eyebrow-to-title spacing. */
+  .page-hero-grid.title-hidden {
+    gap: 16px;
+  }
+
+  .title-hidden .page-title-placeholder {
+    display: none;
+  }
+
+  /* Single-column card lists: the last card's min-height and bottom padding would add to the space above the next divider. */
+  .services > .service:last-child,
+  .process > .process-step:last-child {
+    min-height: 0;
+    padding-bottom: 0;
+  }
+
+  /* The about section stacks here: Yana's photo lines up with the text's left edge. */
+  .intro-yana-portrait {
+    margin: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    border-bottom: 0;
+  }
+
+  .cta-centered .cta-actions {
+    display: flex;
+  }
+
+  .cta-centered .cta-actions .button {
+    width: auto;
   }
 }

@@ -8,19 +8,19 @@ type Props = {
   secondaryLabel?: string;
   secondaryHref?: string;
   hideBody?: boolean;
+  /** Opt-in layout variant: eyebrow, heading and buttons stacked and centred. */
+  centered?: boolean;
 };
 
-const { eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, secondaryHref, hideBody = false } = Astro.props;
+const { eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, secondaryHref, hideBody = false, centered = false } = Astro.props;
 ---
 
 <section class="container">
-  <div class="cta">
-    <div>
+  {centered ? (
+    <div class="cta cta-centered">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h2>{title}</h2>
-    </div>
-    <div>
-      {hideBody ? <p class="cta-body-placeholder" aria-hidden="true"></p> : <p>{body}</p>}
+      {!hideBody && <p>{body}</p>}
       <div class="cta-actions">
         <a class="button" href={primaryHref}>{primaryLabel}</a>
         {secondaryLabel && secondaryHref && (
@@ -28,5 +28,21 @@ const { eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, seconda
         )}
       </div>
     </div>
-  </div>
+  ) : (
+    <div class="cta">
+      <div>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2>{title}</h2>
+      </div>
+      <div class="cta-side">
+        {hideBody ? <p class="cta-body-placeholder" aria-hidden="true"></p> : <p>{body}</p>}
+        <div class="cta-actions">
+          <a class="button" href={primaryHref}>{primaryLabel}</a>
+          {secondaryLabel && secondaryHref && (
+            <a class="button secondary" href={secondaryHref}>{secondaryLabel}</a>
+          )}
+        </div>
+      </div>
+    </div>
+  )}
 </section>

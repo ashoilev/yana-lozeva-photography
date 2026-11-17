@@ -15,7 +15,7 @@ const { eyebrow, title, intro, image, portraitLayout = false, hideTitle = false 
 ---
 
 <section class="page-hero">
-  <div class:list={["container", "page-hero-grid", { "portrait-layout": portraitLayout }]}>
+  <div class:list={["container", "page-hero-grid", { "portrait-layout": portraitLayout, "title-hidden": hideTitle && !portraitLayout }]}>
     {portraitLayout ? (
       <>
         <div class="page-hero-heading">

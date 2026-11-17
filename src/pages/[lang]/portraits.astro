@@ -19,5 +19,5 @@ const services = text.services.map((service, index) => ({ eyebrow: String(index 
   <section class="content-band">
     <div class="container service-grid"><div><p class="eyebrow">{text.section}</p><h2 class="visually-hidden">{text.section}</h2></div><ServiceBlock services={services} /></div>
   </section>
-  <CTA eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.action} primaryHref={localizedPath(lang, "home", "#book")} hideBody />
+  <CTA eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.action} primaryHref={localizedPath(lang, "home", "#book")} hideBody centered />
 </MainLayout>

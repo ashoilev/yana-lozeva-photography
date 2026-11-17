@@ -76,8 +76,8 @@ const structuredData = {
   </head>
   <body>
     <a class="skip-link" href="#main-content">{lang === "bg" ? "Към съдържанието" : "Skip to content"}</a>
-    <Navigation lang={lang} page={page} alternateUrl={alternatePath} />
+    <Navigation lang={lang} page={page} />
     <main class="page-shell" id="main-content"><slot /></main>
-    <Footer lang={lang} />
+    <Footer lang={lang} alternateUrl={alternatePath} />
   </body>
 </html>
