@@ -1513,6 +1513,7 @@ h3,
 
 .work-section {
   padding: var(--divider-space) 0;
+  border-bottom: 0;
 }
 
 .work-paths {
@@ -1525,8 +1526,13 @@ h3,
 
 /* The footer's top line closes this section; a bottom line here stacked a second line on it. */
 .booking-embed {
-  padding: var(--divider-space) 0;
+  padding: 00 var(--divider-space);
   border-bottom: 0;
+}
+
+.booking-embed-grid {
+  padding-top: var(--divider-space);
+  border-top: 1px solid var(--accent);
 }
 
 /* Portraits + companies: gallery, content bands, closing section. */
