@@ -22,5 +22,5 @@ const services = text.services.map((service, index) => ({ eyebrow: String(index 
       {text.steps.map((step) => <article class="process-step"><p class="label">{step.label}</p><h3>{step.title}</h3><p>{step.body}</p></article>)}
     </div></div></div></div>
   </section>
-  <CTA eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.action} primaryHref={`mailto:${site.email}?subject=${encodeURIComponent(text.cta.subject)}`} />
+  <CTA id="contact" eyebrow={text.cta.label} title={text.cta.title} body={text.cta.body} primaryLabel={text.cta.action} primaryHref={`mailto:${site.email}?subject=${encodeURIComponent(text.cta.subject)}`} />
 </MainLayout>

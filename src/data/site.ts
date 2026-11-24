@@ -68,7 +68,7 @@ const personalFiles = [
 ] as const;
 
 const professionalSourceFiles = [
-  "bastun-1.jpg", "bastun-2.jpg", "DSC_5195s.jpg", "DSC_9557s.jpg",
+  "DSC_9745s.jpg", "_DSC6439sm.jpg", "DSC_5195s.jpg", "DSC_9557s.jpg",
   "DSC_9637s.jpg", "DSC_9780s.jpg", "_DSC0156s.jpg", "_DSC0835s.jpg",
   "_DSC1958s.jpg", "_DSC2078s.jpg", "_DSC2722s.jpg", "_DSC2746_1с.jpg",
   "_DSC2812sm.jpg", "_DSC2816s.jpg", "_DSC3296s.jpg", "_DSC3823см.jpg",

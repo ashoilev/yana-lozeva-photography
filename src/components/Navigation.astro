@@ -5,6 +5,14 @@ import { logo } from "../data/site";
 type Props = { lang: Language; page: PageKey; alternateUrl: string };
 const { lang, page, alternateUrl } = Astro.props;
 const text = getCopy(lang);
+const contactPages = ["companies", "giftVouchers"];
+const bookHref = contactPages.includes(page)
+  ? localizedPath(lang, page, "#contact")
+  : localizedPath(lang, "home", "#book");
+const bookLabel =
+  page === "companies" ? text.nav.bookCompanies :
+  page === "giftVouchers" ? text.nav.bookVouchers :
+  text.nav.book;
 ---
 
 <header class="site-header">
@@ -19,7 +27,7 @@ const text = getCopy(lang);
         <li><a class:list={["nav-link", { "nav-link-active": page === "companies" }]} href={localizedPath(lang, "companies")}><span class="nav-label-full">{text.nav.companies}</span><span class="nav-label-short">{text.nav.companiesShort}</span></a></li>
         <li><a class:list={["nav-link", { "nav-link-active": page === "giftVouchers" }]} href={localizedPath(lang, "giftVouchers")}>{text.nav.giftVouchers}</a></li>
         <li><a class="nav-link lang-link" href={alternateUrl} hreflang={lang === "en" ? "bg" : "en"} lang={lang === "en" ? "bg" : "en"} aria-label={lang === "en" ? "Български" : "English"}>{text.nav.language}</a></li>
-        <li><a class="book-link" href={localizedPath(lang, "home", "#book")}>{text.nav.book}</a></li>
+        <li><a class="book-link" href={bookHref}>{bookLabel}</a></li>
       </ul>
     </nav>
   </div>

@@ -20,7 +20,7 @@ export const localizedPath = (lang: Language, page: PageKey = "home", hash = "")
 export const copy = {
   en: {
     locale: "en_US",
-    nav: { work: "Work", personal: "Personal portraits", personalShort: "Personal", companies: "For companies", companiesShort: "Companies", giftVouchers: "Gift vouchers", instagram: "Instagram", book: "Book a portrait", language: "BG" },
+    nav: { work: "Work", personal: "Personal portraits", personalShort: "Personal", companies: "For companies", companiesShort: "Companies", giftVouchers: "Gift vouchers", instagram: "Instagram", book: "Book a portrait",  bookCompanies: "Plan a shoot", bookVouchers: "Get a voucher", language: "BG" },
     footer: { role: "Photographer", location: "Sofia, Bulgaria", giftVouchers: "Gift vouchers", email: "Email" },
     home: {
       title: "Yana Lozeva — Portrait Photographer in Sofia",
@@ -48,7 +48,7 @@ export const copy = {
   },
   bg: {
     locale: "bg_BG",
-    nav: { work: "Работа", personal: "Лични портрети", personalShort: "Лични", companies: "За компании", companiesShort: "Компании", giftVouchers: "Подаръчни ваучери", instagram: "Instagram", book: "Запази сесия", language: "EN" },
+    nav: { work: "Работа", personal: "Лични портрети", personalShort: "Лични", companies: "За компании", companiesShort: "Компании", giftVouchers: "Подаръчни ваучери", instagram: "Instagram", book: "Запази сесия", bookCompanies: "Планирай сесия", bookVouchers: "Поръчай ваучер", language: "EN" },
     footer: { role: "Фотограф", location: "София, България", giftVouchers: "Подаръчни ваучери", email: "Имейл" },
     home: {
       title: "Яна Лозева — Портретен фотограф в София",

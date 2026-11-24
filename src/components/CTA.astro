@@ -1,5 +1,6 @@
 ---
 type Props = {
+  id?: string;
   eyebrow?: string;
   title: string;
   body: string;
@@ -12,9 +13,10 @@ type Props = {
   centered?: boolean;
 };
 
-const { eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, secondaryHref, hideBody = false, centered = false } = Astro.props;
+const { id, eyebrow, title, body, primaryLabel, primaryHref, secondaryLabel, secondaryHref, hideBody = false, centered = false } = Astro.props;
 ---
 
+<section class="container" id={id}>
 <section class="container">
   {centered ? (
     <div class="cta cta-centered">
