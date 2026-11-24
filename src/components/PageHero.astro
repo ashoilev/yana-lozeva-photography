@@ -3,6 +3,7 @@ type Props = {
   eyebrow: string;
   title: string;
   intro: string;
+  quote?: string;
   image?: {
     src: string;
     alt: string;
@@ -11,7 +12,7 @@ type Props = {
   hideTitle?: boolean;
 };
 
-const { eyebrow, title, intro, image, portraitLayout = false, hideTitle = false } = Astro.props;
+const { eyebrow, title, intro, quote, image, portraitLayout = false, hideTitle = false } = Astro.props;
 ---
 
 <section class="page-hero">
@@ -44,6 +45,7 @@ const { eyebrow, title, intro, image, portraitLayout = false, hideTitle = false 
         </div>
         <div>
           <p class="page-intro">{intro}</p>
+          {quote && <p class="page-hero-quote">{quote}</p>}
         </div>
       </>
     )}
