@@ -1,0 +1,14 @@
+RewriteEngine On
+
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTP:Accept-Language} ^bg [NC]
+RewriteRule ^$ /bg/ [R=302,L,E=LANGREDIR:1]
+RewriteRule ^$ /en/ [R=302,L,E=LANGREDIR:1]
+
+<IfModule mod_headers.c>
+  Header always append Vary "Accept-Language" env=LANGREDIR
+</IfModule>
+
+ErrorDocument 404 /404.html
