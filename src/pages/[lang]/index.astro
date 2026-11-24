@@ -11,6 +11,8 @@ const text = copy[lang];
 const personalPreview = personalHomepageImages;
 const corporatePreview = corporateHomepageImages;
 const corporateMailto = `mailto:${site.email}?subject=${encodeURIComponent(text.companies.cta.subject)}`;
+// The booking text may contain an {email} placeholder, rendered as a mailto link.
+const [bookingBefore, bookingAfter] = text.home.booking.body.split("{email}");
 ---
 
 <MainLayout title={text.home.title} description={text.home.description} lang={lang} page="home">
@@ -68,7 +70,7 @@ const corporateMailto = `mailto:${site.email}?subject=${encodeURIComponent(text.
   <section id="book" class="booking-embed" aria-labelledby="book-title">
     <div class="container booking-embed-grid">
       <div><p class="eyebrow">{text.home.booking.label}</p><h2 id="book-title">{text.home.booking.title}</h2></div>
-      <div><p>{text.home.booking.body}</p><LazyCalendly lang={lang} /></div>
+      <div><p>{bookingBefore}{bookingAfter !== undefined && <><a class="booking-email" href={corporateMailto}>{site.email.toLowerCase()}</a>{bookingAfter}</>}</p><LazyCalendly lang={lang} /></div>
     </div>
   </section>
 </MainLayout>

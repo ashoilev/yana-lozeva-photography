@@ -700,6 +700,13 @@ h3 {
   line-height: 1.08;
 }
 
+.page-hero-quote {
+  margin-top: clamp(18px, 2vw, 28px);
+  max-width: 620px;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+}
+
 .editorial-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -978,8 +985,30 @@ h3 {
   align-self: end;
 }
 
-.gift-heading .page-title {
-  max-width: 9ch;
+/*
+ * Voucher heading: the normal h1 size, shrunk only where the longest word would not fit its column whole.
+ * "Подаръчни" is about 6.7em wide and "vouchers" about 5.6em; 7.3 and 5.8 leave room for wider system fonts.
+ * The 7.3em cap holds one word but not both, so the heading takes two lines. The :lang(bg) selector keeps
+ * Bulgarian capped below 981px too, over the stacked layout's "max-width: none".
+ * Guarded because the size uses container units: without them the heading keeps the normal h1 size.
+ */
+.gift-heading .page-title,
+.gift-heading .page-title:lang(bg) {
+  max-width: 7.3em;
+}
+
+@supports (container-type: inline-size) {
+  .gift-heading {
+    container-type: inline-size;
+  }
+
+  .gift-heading .page-title {
+    font-size: min(var(--heading-h1), 100cqi / 5.8);
+  }
+
+  .gift-heading .page-title:lang(bg) {
+    font-size: min(var(--heading-h1), 100cqi / 7.3);
+  }
 }
 
 .gift-voucher-image {
@@ -1010,7 +1039,8 @@ h3 {
   font-size: clamp(1.05rem, 1.5vw, 1.35rem);
 }
 
-.gift-email {
+.gift-email,
+.booking-email {
   border-bottom: 1px solid currentColor;
 }
 
@@ -1398,6 +1428,13 @@ h3,
   overflow-wrap: break-word;
 }
 
+/* Narrowest two-column desktop: keeps "Индивидуални" on one line. */
+@media (min-width: 981px) and (max-width: 1023px) {
+  .service h3 {
+    font-size: 1.875rem;
+  }
+}
+
 @media (max-width: 980px) {
   :root {
     --heading-h1: 3.5rem;
@@ -1507,8 +1544,8 @@ h3,
 
 /*
  * Work-path headings (home): the normal h2 size, shrunk only where the longest word,
- * "Индивидуални," (about 9em wide), would not fit its column whole. Sized from the column itself,
- * so one rule covers every width; 9.4em leaves about 4% breathing room. Same rule for both languages.
+ * "Професионални" (about 9.6em wide), would not fit its column whole. Sized from the column itself,
+ * so one rule covers every width; 9.65em just clears it. Same rule for both languages.
  * Guarded because the size uses container units: without them the heading keeps the normal h2 size.
  */
 .work-path-copy h2 {
@@ -1521,7 +1558,7 @@ h3,
   }
 
   .work-path-copy h2 {
-    font-size: min(var(--heading-h2), 100cqi / 9.4);
+    font-size: min(var(--heading-h2), 100cqi / 9.65);
   }
 }
 
