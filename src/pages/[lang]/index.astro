@@ -70,7 +70,7 @@ const [bookingBefore, bookingAfter] = text.home.booking.body.split("{email}");
   <section id="book" class="booking-embed" aria-labelledby="book-title">
     <div class="container booking-embed-grid">
       <div><p class="eyebrow">{text.home.booking.label}</p><h2 id="book-title">{text.home.booking.title}</h2></div>
-      <div><p>{bookingBefore}{bookingAfter !== undefined && <><a class="booking-email" href={corporateMailto}>{site.email.toLowerCase()}</a>{bookingAfter}</>}</p><LazyCalendly lang={lang} /></div>
+      <div><p>{bookingBefore}{bookingAfter !== undefined && <><a class="booking-email" href={corporateMailto}>{site.email.toLowerCase()}</a>{bookingAfter}</>}</p><LazyCalendly label={text.nav.book} /></div>
     </div>
   </section>
 </MainLayout>

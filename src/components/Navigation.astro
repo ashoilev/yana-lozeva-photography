@@ -1,14 +1,12 @@
 ---
 import { getCopy, localizedPath, type Language, type PageKey } from "../data/i18n";
 import { logo } from "../data/site";
+import LazyCalendly from "./LazyCalendly.astro";
 
 type Props = { lang: Language; page: PageKey; alternateUrl: string };
 const { lang, page, alternateUrl } = Astro.props;
 const text = getCopy(lang);
-const contactPages = ["companies", "giftVouchers"];
-const bookHref = contactPages.includes(page)
-  ? localizedPath(lang, page, "#contact")
-  : localizedPath(lang, "home", "#book");
+const usesContactLink = page === "companies" || page === "giftVouchers";
 const bookLabel =
   page === "companies" ? text.nav.bookCompanies :
   page === "giftVouchers" ? text.nav.bookVouchers :
@@ -27,8 +25,22 @@ const bookLabel =
         <li><a class:list={["nav-link", { "nav-link-active": page === "companies" }]} href={localizedPath(lang, "companies")}><span class="nav-label-full">{text.nav.companies}</span><span class="nav-label-short">{text.nav.companiesShort}</span></a></li>
         <li><a class:list={["nav-link", { "nav-link-active": page === "giftVouchers" }]} href={localizedPath(lang, "giftVouchers")}>{text.nav.giftVouchers}</a></li>
         <li><a class="nav-link lang-link" href={alternateUrl} hreflang={lang === "en" ? "bg" : "en"} lang={lang === "en" ? "bg" : "en"} aria-label={lang === "en" ? "Български" : "English"}>{text.nav.language}</a></li>
-        <li><a class="book-link" href={bookHref}>{bookLabel}</a></li>
+        <li>{usesContactLink ? <a class="book-link" href={localizedPath(lang, page, "#contact")}>{bookLabel}</a> : <LazyCalendly label={bookLabel} />}</li>
       </ul>
     </nav>
   </div>
 </header>
+
+<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+<script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script is:inline>
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element && event.target.closest("a[data-calendly-popup]");
+    if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (typeof window.Calendly?.initPopupWidget !== "function") return;
+
+    window.Calendly.initPopupWidget({ url: link.href });
+    event.preventDefault();
+  });
+</script>
