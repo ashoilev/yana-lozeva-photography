@@ -12,7 +12,7 @@ export const site = {
   businessName: "traits",
   origin: "https://ashoilev.github.io/yana-lozeva-photography",
   location: "Sofia, Bulgaria",
-  email: "Yana.lozeva@gmail.com",
+  email: "yana.lozeva@gmail.com",
   instagram: "https://www.instagram.com/traits.lozeva/",
   calendly: { url: "https://calendly.com/traits" }
 };
